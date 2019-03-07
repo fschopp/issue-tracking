@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copied from https://www.jetbrains.com/help/youtrack/incloud/Import-Links.html -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="list">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="link" minOccurs="0" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:attribute type="xs:string" name="typeName" use="required"/>
+            <xs:attribute type="xs:string" name="source" use="required"/>
+            <xs:attribute type="xs:string" name="target" use="required"/>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copied from https://www.jetbrains.com/help/youtrack/incloud/Import-Issues.html
+     It appears that support for Markdown has been added after the web site was last updated. See
+     https://youtrack.jetbrains.com/issue/JT-46968 and
+     https://github.com/JetBrains/youtrack-python-scripts/blob/0.1.23/youtrackutils/csv2youtrack.py#L292 and the
+     BEGIN ADD / END ADD comments below. -->
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="issues">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="issue" minOccurs="0" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="field" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="value" type="xs:string" maxOccurs="unbounded"/>
+                  </xs:sequence>
+                  <xs:attribute type="xs:string" name="name" use="required"/>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="comment" minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:attribute type="xs:string" name="author" use="optional"/>
+                  <xs:attribute type="xs:string" name="text" use="optional"/>
+                  <!-- BEGIN ADD Markdown support -->
+                  <xs:attribute type="xs:string" name="markdown" use="optional"/>
+                  <!-- END ADD -->
+                  <xs:attribute type="xs:string" name="created" use="optional"/>
+                  <xs:attribute type="xs:string" name="updated" use="optional"/>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

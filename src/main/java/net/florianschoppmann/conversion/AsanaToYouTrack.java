@@ -134,7 +134,7 @@ public final class AsanaToYouTrack {
         }
 
         private void convertPredefinedFields(WrappedTask wrappedTask, String taskName, Issue issue,
-                String creatorLoginName, @Nullable String updaterLoginName) {
+                @Nullable String updaterLoginName) {
             // These are the fields predefined by https://www.jetbrains.com/help/youtrack/incloud/Import-Issues.html
             Task asanaTask = wrappedTask.getTask();
             setField(issue, "numberInProject", wrappedTask.getNumberInProject());
@@ -145,7 +145,7 @@ public final class AsanaToYouTrack {
             setField(issue, "updated", asanaTask.modifiedAt);
             setField(issue, "updaterName", updaterLoginName);
             setField(issue, "resolved", asanaTask.completedAt);
-            setField(issue, "reporterName", creatorLoginName);
+            setField(issue, "reporterName", context.youTrackUserFromEmail(asanaTask.createdBy.email));
             setField(issue, "voterName",
                 asanaTask.likes.stream()
                     .map(like -> like.user.email)
@@ -179,25 +179,8 @@ public final class AsanaToYouTrack {
             }
         }
 
-        private String verifyNonNullCreator(WrappedTask task, @Nullable String creatorLoginName) {
-            // One should assume that every task has a creation story. So it should
-            // be appropriate to call Objects.requireNonNull(creatorLoginName) instead of this method.
-            // However, on 2019-03-06 I have observed an Asana task with no associated stories at all. This may be an
-            // Asana bug. See: https://forum.asana.com/t/rest-api-task-with-no-associated-stories
-            if (creatorLoginName == null) {
-                var referencingTask = new ReferencingTask();
-                referencingTask.setName(task.getTask().name);
-                referencingTask.setAsanaId(task.getTaskId());
-                conversionWarnings.getTasksWithoutCreator().add(referencingTask);
-                return UNKNOWN_LOGIN;
-            } else {
-                return creatorLoginName;
-            }
-        }
-
         private void convertTask(WrappedTask wrappedTask, Issue issue) {
             String updaterLoginName = null;
-            String creatorLoginName = null;
             List<Comment> comments = issue.getComment();
             for (WrappedComment wrappedComment : wrappedTask.getComments()) {
                 var comment = new Comment();
@@ -206,11 +189,6 @@ public final class AsanaToYouTrack {
                 switch (story.resourceSubtype) {
                     case "notes_changed":
                         updaterLoginName = context.youTrackUserFromEmail(story.createdBy.email);
-                        // no break!
-                    case "added_to_project": case "added_to_task":
-                        // coalesce ensures that the first appropriate story sets the creator.
-                        creatorLoginName
-                            = coalesce(creatorLoginName, context.youTrackUserFromEmail(story.createdBy.email));
                         break;
                     case "comment_added": comments.add(comment); break;
                 }
@@ -229,8 +207,7 @@ public final class AsanaToYouTrack {
                 taskName = "(no summary)";
             }
 
-            convertPredefinedFields(wrappedTask, taskName, issue, verifyNonNullCreator(wrappedTask, creatorLoginName),
-                updaterLoginName);
+            convertPredefinedFields(wrappedTask, taskName, issue, updaterLoginName);
             convertCustomFields(wrappedTask, issue, timeEstimate);
         }
 

@@ -66,8 +66,10 @@ public final class Export {
             this.attachmentsBasePath = attachmentsBasePath;
 
             SortedSet<String> taskOptFieldsSet = new TreeSet<>(options.requestedTaskFields);
-            taskOptFieldsSet.addAll(Arrays.asList("created_at", "assignee.email", "followers.email", "html_notes",
-                "likes.user.email", "name", "parent", "resource_type", "resource_subtype"));
+            // The "created_by" field is not yet documented as of 2019-03-07. But:
+            // https://forum.asana.com/t/tasks-created-by-field/34433
+            taskOptFieldsSet.addAll(Arrays.asList("created_at", "created_by.email", "assignee.email", "followers.email",
+                "html_notes", "likes.user.email", "name", "parent", "resource_type", "resource_subtype"));
             taskOptFields = String.join(",", taskOptFieldsSet);
 
             SortedSet<String> storyOptFieldsSet = new TreeSet<>(options.requestedStoryFields);
@@ -107,6 +109,7 @@ public final class Export {
             if (task.parent != null) {
                 addPotentiallyMissing(taskIdToOccurrenceMap, task.parent.id, wrappedTask);
             }
+            addUser(task.createdBy, wrappedTask);
             // If we were to import all projects, we should iterate through task.memberships and extract all sections.
             // However, we deliberately ignore memberships in other projects for now!
             if (task.assignee != null) {

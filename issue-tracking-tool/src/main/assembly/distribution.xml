@@ -14,6 +14,12 @@
         <dependencySet>
             <unpack>false</unpack>
             <outputDirectory>lib</outputDirectory>
+            <!-- Unfortunately, our transitive dependencies do not all have unique artifact IDs. Example:
+                 io.github.microutils:kotlin-logging:1.5.4 depends on
+                 io.github.microutils.kotlin-logging:kotlin-logging:1.5.4 -->
+            <outputFileNameMapping>
+                ${artifact.groupId}/${artifact.artifactId}-${artifact.version}${dashClassifier?}.${artifact.extension}
+            </outputFileNameMapping>
         </dependencySet>
     </dependencySets>
 

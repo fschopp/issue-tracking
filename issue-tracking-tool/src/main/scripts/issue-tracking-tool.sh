@@ -11,5 +11,5 @@ shift
 java \
     -Dorg.slf4j.simpleLogger.showDateTime=true \
     -Dorg.slf4j.simpleLogger.dateTimeFormat="yy-MM-dd'T'HH:mm.z" \
-    -cp lib/${project.build.finalName}.jar \
+    -cp lib/${project.groupId}/${project.build.finalName}.jar \
     "net.florianschoppmann.issuetracking.${simple_class_name}" "$@"

@@ -175,6 +175,12 @@
                     <archive>
                         <manifest>
                             <addClasspath>true</addClasspath>
+                            <classpathLayoutType>custom</classpathLayoutType>
+                            <classpathPrefix>../</classpathPrefix>
+                            <!-- This must match the assembly descriptor! -->
+                            <customClasspathLayout>
+                                $${artifact.groupId}/$${artifact.artifactId}-$${artifact.version}$${dashClassifier?}.$${artifact.extension}
+                            </customClasspathLayout>
                         </manifest>
                         <manifestEntries>
                             <Automatic-Module-Name>

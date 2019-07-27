@@ -78,9 +78,9 @@ This command imports issue activity (event) data from the “import files” (in
 ### Export Asana Project
 
 ```bash
-export ASANA_ACCESS_TOKEN='${asana_access_token}'
-issue-tracking-tool.sh AsanaExport --workspace '${workspace}' \
-  --project '${project}' --abbrev '${abbrev}' \
+export ASANA_ACCESS_TOKEN=${asana_access_token}
+issue-tracking-tool.sh AsanaExport --workspace ${workspace} \
+  --project ${project} --abbrev ${abbrev} \
   --user-mapping /path/to/user-mapping.txt --output /path/to/output-directory
 ```
 where:

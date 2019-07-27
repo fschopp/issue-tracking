@@ -26,7 +26,7 @@ Libraries for high-level interaction with issue trackers through their REST APIs
 
 ## License
 
-[Revised BSD (3-Clause) License](LICENSE)
+[Apache License 2.0](LICENSE)
 
 ## Binary Releases
 

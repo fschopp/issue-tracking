@@ -94,6 +94,16 @@
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>${maven.javadoc.version}</version>
+                <!-- Unfortunately, need to manually make the Javadoc plugin aware of the generated sources -->
+                <configuration>
+                    <sourcepath>${project.basedir}/src/main/java;${project.basedir}/target/generated-sources/xjc</sourcepath>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
                 <configuration>
                     <archive>

@@ -2,6 +2,7 @@ Libraries for high-level interaction with issue trackers through their REST APIs
 
 ## Status
 [![Build Status](https://travis-ci.org/fschopp/issue-tracking.svg?branch=master)](https://travis-ci.org/fschopp/issue-tracking)
+[![Language grade: Java](https://img.shields.io/lgtm/grade/java/g/fschopp/issue-tracking.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/fschopp/issue-tracking/context:java)
 
 ## Overview
 
@@ -36,8 +37,8 @@ None currently. This project should be used with care and might need adjustments
 
 For current snapshot:
 
-- [API documentation](https://fschopp.github.io/issue-tracking/snapshot/apidocs)
-- [Maven-generated project documentation](https://fschopp.github.io/issue-tracking/snapshot)
+- [API documentation](https://fschopp.github.io/issue-tracking/apidocs)
+- [Maven-generated project documentation](https://fschopp.github.io/issue-tracking)
 
 ## Usage
 

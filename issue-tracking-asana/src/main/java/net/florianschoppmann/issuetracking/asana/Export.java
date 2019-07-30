@@ -182,8 +182,7 @@ public final class Export {
             }
         }
 
-        private void processTaskAttachmentsAndStories(WrappedTask wrappedTask, ReferenceFactory referenceFactory)
-                throws IOException {
+        private void processTaskAttachmentsAndStories(WrappedTask wrappedTask, ReferenceFactory referenceFactory) {
             SortedMap<String, WrappedAttachment> idToAttachmentMap = new TreeMap<>();
             CollectionRequest<Attachment> attachmentsRequest
                 = queryAttachments(asanaClient.attachments.findByTask(wrappedTask.getTaskId()));
@@ -202,7 +201,7 @@ public final class Export {
             }
         }
 
-        private void processTasks(CollectionRequest<Task> request, int level) throws IOException {
+        private void processTasks(CollectionRequest<Task> request, int level) {
             @Nullable WrappedTask sectionTitle = null;
             for (Task task : request) {
                 if (level == 0 && task.parent != null) {

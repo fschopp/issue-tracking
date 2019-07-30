@@ -24,6 +24,11 @@ public class Events {
                 && Objects.equals(events, ((Events) otherObject).events));
     }
 
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(events);
+    }
+
     public abstract static class Event {
         @XmlAttribute
         public @Nullable Long timestamp;

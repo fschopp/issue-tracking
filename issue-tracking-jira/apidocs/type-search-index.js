@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes","url":"allclasses-index.html"},{"p":"net.florianschoppmann.issuetracking.jira.rest","l":"Icon"},{"p":"net.florianschoppmann.issuetracking.jira","l":"JiraClient"},{"p":"net.florianschoppmann.issuetracking.jira.rest","l":"RemoteIssueLink"},{"p":"net.florianschoppmann.issuetracking.jira.rest","l":"RemoteObject"}]

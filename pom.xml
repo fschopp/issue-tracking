@@ -60,7 +60,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <apache.httpclient.version>4.5.7</apache.httpclient.version>
+        <apache.httpclient.version>4.5.13</apache.httpclient.version>
         <asana.version>eee7e0fc25add6c781876d612cc67f4870d7e420</asana.version>
         <atlassian.concurrent.version>4.0.1</atlassian.concurrent.version>
         <atlassian.jira.client.version>5.1.2-2bd0a62e</atlassian.jira.client.version>

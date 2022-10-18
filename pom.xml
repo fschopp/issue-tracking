@@ -73,7 +73,7 @@
         <java.version>11</java.version>
         <java.futures.version>1.1.0</java.futures.version>
         <jaxb-api.version>2.3.2</jaxb-api.version>
-        <jettison.version>1.1</jettison.version>
+        <jettison.version>1.5.1</jettison.version>
         <maven.assembly.version>3.1.1</maven.assembly.version>
         <maven.dependency.analyzer.version>1.11.1</maven.dependency.analyzer.version>
         <maven.jaxb2.version>0.14.0</maven.jaxb2.version>
